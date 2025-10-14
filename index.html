@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Proyecto de desarrollo web moderno" />
+  <meta name="author" content="Tu nombre" />
+  <title>Mi Proyecto Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+  <style>
+    :root{
+      --bg:#071026;
+      --card:#0d1520;
+      --muted:#9aa6b2;
+      --accent:#60a5fa;
+      --glass: rgba(255,255,255,0.03);
+      --radius:10px;
+      --container:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#041526);color:#eaf6ff}
+    .container{max-width:var(--container);margin:0 auto;padding:20px}
+
+    /* Header / Nav */
+    header{border-bottom:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+    .navbar{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--container);margin:0 auto;padding:14px 20px}
+    .logo{margin:0;font-size:1.1rem;font-weight:700;color:#fff}
+    .menu{list-style:none;margin:0;padding:0;display:flex;gap:14px;align-items:center}
+    .menu a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;display:inline-block}
+    .menu a:hover{background:var(--glass);color:var(--accent)}
+
+    /* Dropdown */
+    .dropdown{position:relative}
+    .submenu{position:absolute;left:0;top:calc(100% + 8px);background:var(--card);border:1px solid rgba(255,255,255,0.02);padding:8px;border-radius:8px;display:none;min-width:200px;z-index:20}
+    .submenu li{margin:0}
+    .submenu a{display:block;padding:8px;border-radius:6px}
+    .dropdown:hover .submenu{display:block}
+
+    /* Hero */
+    #intro{max-width:var(--container);margin:34px auto;padding:28px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between;gap:20px}
+    #intro h2{margin:0 0 6px 0}
+    #intro p{margin:0;color:var(--muted)}
+    #intro button{background:var(--accent);color:#042033;border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+
+    /* Footer */
+    footer{text-align:center;padding:18px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03);margin-top:40px}
+
+    /* Responsive */
+    @media (max-width:800px){
+      .menu{display:none}
+      .mobile-toggle{display:inline-flex;align-items:center;gap:8px;background:transparent;border:0;color:var(--muted);font-size:1.1rem;padding:8px}
+      .mobile-nav{display:none;position:fixed;right:18px;top:70px;background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+      .mobile-nav.open{display:block}
+      #intro{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar container">
+      <h1 class="logo">Mi Sitio Web</h1>
+
+      <button class="mobile-toggle" id="menuBtn" aria-expanded="false" aria-label="Abrir menú">☰</button>
+
+      <ul class="menu" id="desktopMenu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Sobre mí</a></li>
+
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Proyectos ▾</a>
+          <ul class="submenu" aria-label="Submenu proyectos">
+            <li><a href="1.1/main.html">Ejercicio 1.1 · Mostrar texto</a></li>
+            <li><a href="1.2/main.html">Ejercicio 1.2 · Selector color</a></li>
+            <li><a href="prubeas-clases/JS%20-14-10-2025/main.html">Días de la semana</a></li>
+            <li><a href="#">Blog Técnico</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#">Contacto</a></li>
+      </ul>
+
+      <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;">
+          <li><a href="1.1/main.html">Ejercicio 1.1 · Mostrar texto</a></li>
+          <li><a href="1.2/main.html">Ejercicio 1.2 · Selector color</a></li>
+          <li><a href="prubeas-clases/JS%20-14-10-2025/main.html">Días de la semana</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro" class="container">
+      <div>
+        <h2>Bienvenido</h2>
+        <p>Plantilla limpia y profesional para tus ejercicios de JavaScript. Usa los enlaces del menú para abrir cada demo desde el navegador.</p>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="1.1/main.html" style="text-decoration:none;"><button>Ejercicio 1.1</button></a>
+        <a href="1.2/main.html" style="text-decoration:none;"><button style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Ejercicio 1.2</button></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mi Nombre — Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    });
+  </script>
+</body>
+</html>
