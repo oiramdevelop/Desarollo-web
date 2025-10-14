@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Días de la semana</title>
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220;
+            --accent:#7dd3fc;
+            --muted:#94a3b8;
+            --glass: rgba(255,255,255,0.03);
+        }
+        body{
+            margin:0;
+            font-family: Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+            background: linear-gradient( to left,rgb(23, 23, 23)0%, #04282e 60%);
+            color:#e6eef8;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:40px;
+        }
+        .wrap{
+            width:100%;
+            max-width:900px;
+            background: linear-gradient( rgba(202, 208, 11, 0.02), rgba(255,255,255,0.01));
+            border-radius:12px;
+            box-shadow: 0 6px 30px rgba(2,6,23,0.7);
+            padding:28px;
+            backdrop-filter: blur(6px);
+        }
+        header{
+            display:flex;
+            align-items:center;
+            gap:16px;
+            margin-bottom:18px;
+        }
+        header .logo{
+            width:52px;
+            height:52px;
+            border-radius:10px;
+            background-color: gold;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            color:#042033;
+            box-shadow: 0 6px 18px rgba(33,150,243,0.12);
+        }
+        header h1{
+            margin:0;
+            font-size:1.25rem;
+            letter-spacing:0.2px;
+        }
+        header p{
+            margin:0;
+            color:var(--muted);
+            font-size:0.9rem;
+        }
+        #days{
+            display:grid;
+            grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+            gap:12px;
+            margin-top:18px;
+        }
+        .day-card{
+            background:var(--card);
+            padding:14px;
+            border-radius:10px;
+            border:1px solid rgba(255,255,255,0.03);
+            transition: transform .18s ease, box-shadow .18s ease;
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+            align-items:flex-start;
+        }
+        .day-card:hover{
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(3,7,18,0.6);
+        }
+        .day-name{
+            font-weight:600;
+            font-size:1.05rem;
+            color:#eaf6ff;
+        }
+        .day-count{
+            margin:0;
+            background:var(--glass);
+            padding:6px 10px;
+            border-radius:999px;
+            color:var(--accent);
+            font-weight:700;
+            font-size:0.95rem;
+        }
+        .summary{
+            margin-top:16px;
+            color:var(--muted);
+            font-size:0.95rem;
+        }
+
+        @media (max-width:420px){
+            .wrap{ padding:18px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap">
+        <header>
+            <div class="logo">JS</div>
+            <div>
+                <h1>Días de la semana</h1>
+                <p>Listado bonito con el número de letras de cada día</p>
+            </div>
+        </header>
+
+        <section id="days" aria-live="polite">
+            <!-- JS insertará tarjetas aquí -->
+        </section>
+
+        <p id="summary" class="summary" aria-hidden="false">
+            <!-- JS insertará aquí un resumen -->
+        </p>
+    </main>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
