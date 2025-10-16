@@ -9,18 +9,11 @@
         // Función para mostrar la lista en HTML
         function mostrarLista() {
             const ul = document.getElementById('listaCiudades');
-            ul.innerHTML = ''; // limpiar lista
-
-            // Encontrar ciudad más y menos poblada
-            let maxHabitantes = Math.max(...mapCiudades.map(c => c.numPeople));
-            let minHabitantes = Math.min(...mapCiudades.map(c => c.numPeople));
-
             mapCiudades.forEach(ciudad => {
                 const li = document.createElement('li');
                 li.textContent = `ID: ${ciudad.idCity} - ${ciudad.cityName} - Habitantes: ${ciudad.numPeople}`;
 
-                if(ciudad.numPeople === maxHabitantes) li.classList.add('maxHabitantes');
-                if(ciudad.numPeople === minHabitantes) li.classList.add('minHabitantes');
+                
 
                 ul.appendChild(li);
             });
