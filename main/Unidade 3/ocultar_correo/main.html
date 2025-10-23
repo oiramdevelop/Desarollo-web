@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ocultar Correo - Tu Versión</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+.caja {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    }
+input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    }
+button:hover {
+    background: #2980b9;
+    }
+    #correo_encriptado {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #2c3e50;
+    min-height: 24px;
+    }
+</style>
+</head>
+<body>
+
+<div class="caja">
+    <h2>sOcultar Correo Electrónico</h2>
+    <input type="email" id="email" placeholder="Ej: usuario@dominio.com" />
+    <br>
+    <button onclick="ocultarYMostrar()">Ocultar</button>
+    <div id="correo_encriptado">El resultado aparecerá aquí</div>
+</div>
+ <script src="js/main.js"></script> 
+  
+</body>
+</html>

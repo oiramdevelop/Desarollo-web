@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de Cadenas</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 40px; }
+    input { margin: 10px; padding: 5px; font-size: 16px; }
+    button { padding: 8px 15px; font-size: 16px; cursor: pointer; }
+    .resultado { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Juego de Cadenas</h2>
+  <p>Adivina la contraseña secreta</p>
+
+  <div>
+    <input type="text" id="jugador1" placeholder="">
+    <input type="text" id="jugador2" placeholder="">
+    <input type="text" id="jugador3" placeholder="">
+  </div>
+
+  <button onclick="jugar()">Comprobar</button>
+
+  <div id="resultados" class="resultado"></div>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>
