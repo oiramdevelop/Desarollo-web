@@ -1,7 +1,8 @@
 const password = "L4ultimavezKtelod1go";
 
 /**
- * Calcula el puntaje de un intento basado en coincidencias exactas (posición y carácter).
+ * Calcula el puntaje de un intento basado en coincidencias de carácter (sin importar la posición).
+ * Cada carácter de la contraseña solo puede ser acertado y puntuado una vez.
  * @param {string} intent - El intento del jugador.
  * @param {string} password - La contraseña a adivinar.
  * @returns {{puntos: number, aciertos: string}} Los puntos totales y los caracteres acertados.
@@ -10,16 +11,26 @@ function calcularPuntaje(intent, password) {
     let puntos = 0;
     let aciertos = "";
     
-    // Recorremos cada letra del intento
+    // Crear una copia de la contraseña como un array para "eliminar" caracteres ya puntuados
+    let passwordArray = password.split('');
+
+    // Recorremos cada letra del intento del jugador
     for (let i = 0; i < intent.length; i++) {
         let letra = intent[i];
 
-        // 1. Condición de coincidencia: Debe estar dentro de la longitud de la contraseña
-        //    y el carácter debe ser idéntico al de la contraseña en esa posición (i).
-        if (i < password.length && letra === password[i]) {
-            aciertos += letra;
+        // 1. Buscamos si el carácter del intento (letra) existe en cualquier posición de la contraseña restante
+        const indiceCoincidencia = passwordArray.indexOf(letra);
 
-            // 2. Asignación de Puntos (jerarquía: Número > Vocal > Consonante)
+        if (indiceCoincidencia !== -1) {
+            // El carácter existe en la contraseña
+
+            // 2. Registramos el acierto
+            aciertos += letra;
+            
+            // 3. Eliminamos ese carácter de la copia de la contraseña (para evitar que se puntúe dos veces)
+            passwordArray.splice(indiceCoincidencia, 1);
+
+            // 4. Asignación de Puntos (jerarquía: Número > Vocal > Consonante)
             if (!isNaN(letra) && letra !== ' ') { // Es un número (se suma 3)
                 puntos += 3;
             } else if ("aeiouAEIOU".includes(letra)) { // Es una vocal (se suma 1)
@@ -35,13 +46,14 @@ function calcularPuntaje(intent, password) {
 
 function jugar() {
     
+    // Captura los valores de los inputs
     const player1 = document.getElementById("jugador1").value.trim();
     const player2 = document.getElementById("jugador2").value.trim();
     const player3 = document.getElementById("jugador3").value.trim();
     
-    // Sugerencia de depuración: Verifica si los valores se están capturando bien
     console.log("Intento J1:", player1); 
 
+    // Los cálculos ahora usan la nueva lógica
     const r1 = calcularPuntaje(player1, password);
     const r2 = calcularPuntaje(player2, password);
     const r3 = calcularPuntaje(player3, password);
@@ -62,14 +74,14 @@ function jugar() {
     resultados.forEach(r => {
         // Usa el operador ternario para mostrar "Ninguno" si la cadena de aciertos está vacía
         const aciertosMostrar = r.aciertos.length > 0 ? r.aciertos : "Ninguno";
-        html += `<p>${r.nombre}: ${r.puntos} puntos — Aciertos: **${aciertosMostrar}**</p>`;
+        html += `<p>${r.nombre}: **${r.puntos} puntos** — Aciertos: ${aciertosMostrar}</p>`;
     });
 
-    // Añadir un mensaje especial si no hay puntos (todos sacaron 0)
+    // Añadir un mensaje especial
     if (maxPuntos === 0) {
-        html += `<h3>Nadie acertó en la posición correcta. ¡El ganador es: ${ganador.nombre} con ${ganador.puntos} puntos!</h3>`;
+        html += `<h3 style="color: gray;">Nadie acertó un carácter. ¡El ganador es: ${ganador.nombre} con ${ganador.puntos} puntos!</h3>`;
     } else {
-        html += `<h3> ¡El Ganador es: ${ganador.nombre} con ${ganador.puntos} puntos!</h3>`;
+        html += `<h3 style="color: green;"> ¡El Ganador es: ${ganador.nombre} con ${ganador.puntos} puntos!</h3>`;
     }
     
     document.getElementById("resultados").innerHTML = html;
