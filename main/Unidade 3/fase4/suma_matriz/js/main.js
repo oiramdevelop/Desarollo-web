@@ -1,12 +1,4 @@
-var num1 = parseInt(prompt("Introduce un numero"))
-var num2 = parseInt(prompt("Introduce un numero"))
-var num3 = parseInt(prompt("Introduce un numero"))
-var num4 = parseInt(prompt("Introduce un numero"))
-var num5 = parseInt(prompt("Introduce un numero"))
-var num6 = parseInt(prompt("Introduce un numero"))
-var num7 = parseInt(prompt("Introduce un numero"))
-var num8 = parseInt(prompt("Introduce un numero"))
-var num9 = parseInt(prompt("Introduce un numero"))
+
 
 var matriz=[num1,num2]
 
