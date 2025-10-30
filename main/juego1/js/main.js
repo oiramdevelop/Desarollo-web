@@ -77,7 +77,7 @@ function jugar() {
         html += `<p>${r.nombre}: **${r.puntos} puntos** — Aciertos: ${aciertosMostrar}</p>`;
     });
 
-    // Añadir un mensaje especial
+    // Añadir un mensaje
     if (maxPuntos === 0) {
         html += `<h3 style="color: gray;">Nadie acertó un carácter. ¡El ganador es: ${ganador.nombre} con ${ganador.puntos} puntos!</h3>`;
     } else {
