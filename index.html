@@ -3,354 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Proyecto Web · Ejercicios JS</title>
-  <meta name="description" content="Colección de ejercicios y demos en JavaScript" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <title>Landing Page · Ejercicios JS</title>
   <style>
+    /* Variables de color */
     :root {
       --bg: #071026;
       --card: #0d1520;
-      --muted: #9aa6b2;
       --accent: #60a5fa;
-      --glass: rgba(255, 255, 255, 0.03);
+      --text: #eaf6ff;
+      --muted: #9aa6b2;
       --radius: 12px;
-      --container: 1100px;
     }
 
-    * { box-sizing: border-box; }
-    html, body {
-      height: 100%;
+    body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: linear-gradient(180deg, var(--bg), #041526);
-      color: #eaf6ff;
-      -webkit-font-smoothing: antialiased;
+      color: var(--text);
+    }
+
+    a { text-decoration: none; }
+
+    header {
+      padding: 24px;
+      text-align: center;
+      background: var(--card);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    header p {
+      color: var(--muted);
+      margin: 8px 0 0 0;
+    }
+
+    main {
       display: flex;
       flex-direction: column;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* Header */
-    header {
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px);
-      position: sticky;
-      top: 0;
-      background: linear-gradient(180deg, rgba(7,16,38,0.9), rgba(7,16,38,0.6));
-      z-index: 50;
-    }
-
-    .navbar {
+    section {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 12px 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #60d7ff);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      color: #042033;
-    }
-
-    .site-title { font-size: 1rem; font-weight: 700; color: azure; }
-
-    nav { display: flex; gap: 16px; align-items: center; }
-
-    .nav-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .nav-link {
-      color: var(--muted);
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .nav-link:hover, .nav-link:focus {
-      background: var(--glass);
-      color: var(--accent);
-      outline: none;
-    }
-
-    /* Dropdown */
-    .dropdown { position: relative; }
-    .submenu {
-      position: absolute;
-      left: 0;
-      top: calc(100% + 8px);
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.02);
-      padding: 8px;
-      border-radius: 8px;
-      display: none;
-      min-width: 220px;
-      box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-    }
-    .submenu a {
-      display: block;
-      padding: 8px;
-      border-radius: 6px;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .dropdown:focus-within .submenu,
-    .dropdown:hover .submenu {
-      display: block;
-    }
-
-    /* Hero */
-    main {
-      flex: 1;
-    }
-
-    .hero {
-      max-width: var(--container);
-      margin: 28px auto;
-      padding: 28px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border: 1px solid rgba(255,255,255,0.03);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 20px;
     }
 
-    .hero-left h1 { margin: 0; font-size: 1.8rem; }
-    .hero-left p { margin: 8px 0 0 0; color: var(--muted); }
-    .hero-actions { display: flex; gap: 10px; margin-top: 12px; }
-
-    .btn {
-      background: var(--accent);
-      color: #042033;
-      padding: 10px 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.06);
-      color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .btn-ghost:hover {
-      background: var(--glass);
+    section h2 {
+      font-size: 1.6rem;
       color: var(--accent);
+      margin-bottom: 12px;
+      text-align: center;
     }
 
-    /* Projects grid */
-    .projects {
+    .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+      gap: 16px;
     }
 
     .card {
       background: var(--card);
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.02);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      padding: 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
 
     .card a {
-      color: inherit;
-      text-decoration: none;
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-top: 8px;
+      font-size: 1rem;
     }
 
-    /* Map section */
-    .map-section {
-      margin: 40px auto;
-      max-width: var(--container);
-      text-align: center;
-    }
-
-    .map-section h2 {
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .map-container {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      height: 380px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
-      padding: 18px;
+      padding: 24px;
       color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.03);
-      margin-top: auto;
       background: var(--card);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 60px;
     }
 
-    /* Mobile */
-    .mobile-toggle {
-      display: none;
-      background: transparent;
-      border: 0;
-      color: var(--muted);
-      font-size: 1.3rem;
-      padding: 8px;
-      border-radius: 8px;
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      section h2 { font-size: 1.4rem; }
     }
-
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      right: 16px;
-      top: 70px;
-      background: var(--card);
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 8px 32px rgba(2,6,23,0.6);
-    }
-
-    .mobile-nav.open { display: block; }
-
-    @media (max-width: 880px) {
-      .nav-list { display: none; }
-      .mobile-toggle { display: inline-flex; }
-      .hero { flex-direction: column; align-items: flex-start; }
-    }
-
-    :focus { outline: 2px solid rgba(96,165,250,0.18); outline-offset: 2px; }
   </style>
 </head>
-
 <body>
   <header>
-    <div class="navbar container" role="banner">
-      <a class="brand" href="./">
-        <span class="logo-mark">JS</span>
-        <span class="site-title">Mi Proyecto Web</span>
-      </a>
-
-      <nav role="navigation" aria-label="Menú principal">
-        <button id="mobileBtn" class="mobile-toggle" aria-expanded="false" aria-controls="mobileNav">☰</button>
-
-        
-          
-        </ul>
-      </nav>
-
-      <div id="mobileNav" class="mobile-nav" aria-hidden="true">
-        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
-          <li><a href="main/1.1/main.html">Ejercicio 1.1 · Mostrar texto</a></li>
-          <li><a href="main/1.2/main.html">Ejercicio 1.2 · Selector color</a></li>
-          <li><a href="main/prubeas-clases/JS%20-14-10-2025/main.html">Días de la semana</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div>
-    </div>
+    <h1>Desarollo en entorno Cliente</h1>
+    <p>Mario Rodriguez Dia 2 DAW</p>
   </header>
 
-  <main class="container" role="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-left">
-        <h1 id="hero-title">Colección de ejercicios en JavaScript</h1>
-        <p>Interfaz limpia, accesible y lista para probar. Abre cualquier demo desde los enlaces.</p>
-        <div class="hero-actions">
-          <a class="btn" href="main/1.1/main.html">Abrir ejercicio 1.1</a>
-          <a class="btn-ghost" href="main/1.2/main.html">Abrir ejercicio 1.2</a>
-          <a class="btn-ghost" href="main/prubeas-clases/JS%20-14-10-2025/main.html">Abrir ejerciccio 14-10-2025</a>
-          <a class="btn-ghost" href="main\prubeas-clases\jS 16-10 - 2025 - MAPS\main.html">Abrir ejercicio 16-10-2025</a>
+  <main>
+    <!-- Unidad 1 -->
+    <section>
+      <h2>Unidad 1</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>1.1</strong>
+          <a href="main/1.1/main.html">Mostrar texto</a>
+        </div>
+        <div class="card">
+          <strong>1.2</strong>
+          <a href="main/1.2/main.html">Selector de color</a>
+        </div>
+        <div class="card">
+          <strong>1.3</strong>
+          <a href="main/valor-aleatorio/main.html">Valor aleatorio</a>
+        </div>
+        <div class="card">
+          <strong>1.4</strong>
+          <a href="main/calculador/main.html">Calculadora básica</a>
         </div>
       </div>
-
-      <aside style="width:320px;">
-        <h4 style="margin:0 0 8px 0;color:var(--muted)">Proyectos rápidos</h4>
-        <div class="projects">
-          <div class="card"><a href="main/1.1/main.html"><strong>1.1</strong><div style="color:var(--muted)">Mostrar texto en párrafo</div></a></div>
-          <div class="card"><a href="main/1.2/main.html"><strong>1.2</strong><div style="color:var(--muted)">Selector de color</div></a></div>
-          <div class="card"><a href="main\valor-aleatorio\main.html"><strong>Valro aleatorio</strong><div style="color:var(--muted)">ejercicio de valor aleatorio con funcion flecha</div></a></div>
-          <div class="card"><a href="main\calculador\main.html"><strong>Caluculador sencilla</strong><div style="color:var(--muted)">ejercicio calculadora basica </div></a></div>
-          <div class="card"><a href="main\map_events\main.html"><strong>Maps</strong><div style="color:var(--muted)">ejercicio de maps</div></a></div>
-          <div class="card"><a href="main\juego1\main.html"><strong>Juego</strong><div style="color:var(--muted)">Juego Clase 23/10/2025</div></a></div>
-        </div>
-      </aside>
     </section>
 
+    <!-- Unidad 2 -->
+    <section>
+      <h2>Unidad 2</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>2.1</strong>
+          <a href="main/prubeas-clases/JS-14-10-2025/main.html">Días de la semana</a>
+        </div>
+        <div class="card">
+          <strong>2.2</strong>
+          <a href="main/prubeas-clases/jS-16-10-2025-MAPS/main.html">Maps</a>
+        </div>
+        <div class="card">
+          <strong>2.3</strong>
+          <a href="main/map_events/main.html">Eventos con Maps</a>
+        </div>
+      </div>
+    </section>
 
-    <section class="map-section">
-      <h2>Ubicación</h2>
-      <p style="color:var(--muted)">Encuéntranos fácilmente con el mapa integrado:</p>
-      <div class="map-container">
-        <!-- Puedes cambiar el lugar en el src -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3203.3889505206275!2d-6.242778924510084!3d36.59294037230694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0dd021173d3f65%3A0x2d90da52b414124b!2sIES%20Mar%20de%20C%C3%A1diz!5e0!3m2!1sen!2ses!4v1760618804465!5m2!1sen!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- Unidad 3 -->
+    <section>
+      <h2>Unidad 3</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>3.1</strong>
+          <a href="main\juego1\main.html">Juego Clase 23/10/2025</a>
+        </div>
+        <div class="card">
+          <strong>3.2</strong>
+          <a href="main\Unidade 3\fase3\ejercicio4\ejercicio4.html">Extraer caracteres</a>
+        </div>
+        <div class="card">
+          <strong>3.3</strong>
+          <a href="main\Unidade 3\fase3\ejercicio6\ejercicio6.html">Proteger email</a>
+        </div>
+        <div class="card">
+          <strong>3.4</strong>
+          <a href="main\Unidade 3\fase3\ejercicio9.html\ejercici9.html">Capitalizar texto</a>
+        </div>
+        <div class="card">
+          <strong>3.5</strong>
+          <a href="main\Unidade 3\fase3\ejercicio14\ejercicio14.html">Insertar cadena</a>
+        </div>
+        <div class="card">
+          <strong>3.6</strong>
+          <a href="main\Unidade 3\fase3\ejercicio18\ejercicio18.html">Contar subcadena</a>
+        </div>
+        <div class="card">
+          <strong>3.7</strong>
+          <a href="main\Unidade 3\ejercicio29\ejercicio29.html">Buscar palabra</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2025 . Todos los derechos reservados.</p>
-      <p style="font-size:0.9rem;">Desarrollado  Mario Rodriguez Diaz</p>
-    </div>
+    &copy; 2025 — Desarrollado por Mario Rodríguez Díaz
   </footer>
-
-  <script>
-    const mobileBtn = document.getElementById('mobileBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    mobileBtn?.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
-      mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  </script>
 </body>
 </html>
